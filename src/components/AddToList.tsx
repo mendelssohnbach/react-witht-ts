@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
+import { IState as Props } from '../App';
 
-const AddToList = () => {
+interface IProps {
+  setPeople: React.Dispatch<React.SetStateAction<Props['people']>>;
+  people: Props['people'];
+}
+
+const AddToList: React.FC<IProps> = ({ setPeople, people }) => {
   const [input, setInput] = useState({
     name: '',
     age: '',
@@ -15,35 +21,63 @@ const AddToList = () => {
     });
   };
 
+  const handleClick = () => {
+    if (!input.name || !input.age) return;
+
+    setPeople([
+      ...people,
+      {
+        name: input.name,
+        age: parseInt(input.age),
+        img: input.img,
+        note: input.note,
+      },
+    ]);
+
+    setInput({
+      name: '',
+      age: '',
+      img: '',
+      note: '',
+    });
+  };
+
   return (
     <div className="AddToList">
       <input
         type="text"
-        placeholder="Name"
+        onChange={handleChange}
         className="AddToList-input"
+        name="name"
         value={input.name}
-        onChange={handleChange}
+        placeholder="Name"
       />
       <input
         type="text"
-        placeholder="Age"
+        onChange={handleChange}
         className="AddToList-input"
+        name="age"
         value={input.age}
-        onChange={handleChange}
+        placeholder="Age"
       />
       <input
         type="text"
-        placeholder="Image Url"
+        onChange={handleChange}
         className="AddToList-input"
+        name="img"
         value={input.img}
-        onChange={handleChange}
+        placeholder="Image Url"
       />
-      <input
-        placeholder="Note"
+      <textarea
+        onChange={handleChange}
         className="AddToList-input"
+        name="note"
         value={input.note}
-        onChange={handleChange}
+        placeholder="Note"
       />
+      <button onClick={handleClick} className="AddToList-btn">
+        Add to List
+      </button>
     </div>
   );
 };
