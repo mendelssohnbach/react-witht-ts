@@ -76,7 +76,7 @@ const AddToList: React.FC<IProps> = ({ setPeople, people }) => {
         placeholder="Note"
       />
       <button onClick={handleClick} className="AddToList-btn">
-        Add to List
+        身近な有名人を加える
       </button>
     </div>
   );

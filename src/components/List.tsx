@@ -14,7 +14,7 @@ const List: React.FC<IProps> = ({ people }) => {
             <img className="List-img" src={person.img} alt={person.name} />
             <h2>{person.name}</h2>
           </div>
-          <p>{person.age} years old</p>
+          <p>{person.age}歳</p>
           <p className="List-note">{person.note}</p>
         </li>
       );
