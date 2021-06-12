@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import List from './components/List';
 
 interface IState {
   people: {
@@ -17,6 +17,7 @@ function App() {
   return (
     <div className="App">
       <h1>People invited to my Party</h1>
+      <List people={people} />
     </div>
   );
 }
